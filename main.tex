@@ -1,0 +1,343 @@
+\documentclass[a4paper, 12pt,oneside]{article}
+%On peut changer "oneside" en "twoside" si on sait que le résultat sera recto-verso.
+%Cela influence les marges (pas ici car elles sont identiques à droite et à gauche)
+
+% pour l'inclusion de figures en eps,pdf,jpg,....
+\usepackage{graphicx}
+
+%Marges. Désactiver pour utiliser les valeurs LaTeX par défaut
+%\usepackage[top=2.5cm, bottom=2cm, left=2cm, right=2cm, showframe]{geometry}
+\usepackage[top=2.5cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+
+% quelques symboles mathematiques en plus
+\usepackage{amsmath}
+
+% le tout en langue francaise
+%\usepackage[francais]{babel}
+
+% on peut ecrire directement les charactères avec l'accent
+\usepackage[T1]{fontenc}
+
+% a utiliser sur Linux/Windows
+%\usepackage[latin1]{inputenc}
+
+% a utiliser avec UTF8
+\usepackage[utf8]{inputenc}
+%Très utiles pour les groupes mixtes mac/PC. Un fichier texte enregistré sous codage UTF-8 est lisible dans les deux environnement.
+%Plus de problème de caractères accentués et spéciaux qui ne s'affichent pas
+
+% a utiliser sur le Mac
+%\usepackage[applemac]{inputenc}
+
+% pour l'inclusion de liens dans le document (pdflatex)
+\usepackage[colorlinks,bookmarks=false,linkcolor=black,urlcolor=blue, citecolor=black]{hyperref}
+\def\figureautorefname{Fig.}
+\def\tableautorefname{Tab.}
+\def\equationautorefname{Éq.}
+\def\sectionautorefname{Sec.}
+%Pour l'utilisation plus simple des unités et fractions
+\usepackage{units}
+
+%Pour utiliser du time new roman... Comenter pour utiliser du ComputerModern
+%\usepackage{mathptmx}
+\usepackage{wrapfig}
+\usepackage{pgf}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{placeins}
+
+%Pour du code non interprété
+\usepackage{verbatim}
+\usepackage{verbdef}% http://ctan.org/pkg/verbdef
+
+%Pour changer la taille des titres de section et subsection. Ajoutez manuellement les autres styles si besoin.
+\makeatletter
+\renewcommand{\section}{\@startsection {section}{1}{\z@}%
+             {-3.5ex \@plus -1ex \@minus -.2ex}%
+             {2.3ex \@plus.2ex}%
+             {\normalfont\normalsize\bfseries}}
+\makeatother
+
+\makeatletter
+\renewcommand{\subsection}{\@startsection {subsection}{1}{\z@}%
+             {-3.5ex \@plus -1ex \@minus -.2ex}%
+             {2.3ex \@plus.2ex}%
+             {\normalfont\normalsize\bfseries}}
+\makeatother
+
+%Début du document
+\begin{document}
+\title{\normalsize{Lab Work Report - Group N$^\circ$\\ XX - Experiment}}
+\date{\normalsize{\today}}
+\author{\normalsize{Name} 1\and \normalsize{Name 2}}
+%Crée la page de titre
+%\maketitle
+%Ajoute la table des matières
+%\tableofcontents
+%Début du rapport à la page suivante
+%\newpage
+
+%De manière à ce que template latex ressemble au mieux au template word, on empêche latex de créer la page de titre et la créons à la main
+%En taille de police 12, la commande \large donne une taille de police 14
+%On utilise la commande \sffamily pour créer des caractères sans-serif
+
+\begin{center}
+\large\textbf{\sffamily Experiment N$^\circ$G7: Effet Piston}\\%
+\large\sffamily Group N$^\circ$14: Paul-Émile Balducchi\\%
+Nicolas Guinaudeau \large\sffamily \today\qquad \\%
+\end{center}
+
+%			Introduction
+\section{Introduction}
+L'objectif ambitieux de relier Berne à Zurich en seulement 12 minutes est celui du Swissmetro. Ce projet consiste à faire passer un train dans des tunnels souterrains à des vitesses de l'ordre de $500~\mathrm{km/h}$. Cependant, pour atteindre ces vitesses, il faut parvenir à drastiquement réduire les forces de friction. La force de frottement avec les rails peut être éliminée en optant pour des trains à lévitation magnétique. Il reste la force de résistance de l'air, notamment due à l'effet piston qui bloque l'air en face d'un train dans un tunnel et augmente ainsi la résistance. Celle-ci peut être atténuée en réduisant la pression de l'air dans le tunnel. L'objectif de cette expérience est donc de comprendre comment la résistance de l'air dans les tunnels affecte un projet comme le Swissmetro. Des mesures ont été effectuées à l'aide d'une maquette dans le cas d'un tube fini et d'un tube infini pour plusieurs valeurs de pression, afin de comparer les forces de frottement et les vitesses.
+%
+\section{Théorie et démarche expérimentale}
+\paragraph{Démarche expérimentale : } 
+\begin{wrapfigure}{r}{0.4\textwidth} % r = right, 35% de la largeur du texte
+    \centering
+    \includegraphics[width=0.35\textwidth]{img/montage_exp.png}
+    \caption{ Schéma de montage expérimental \cite{notice} }
+    \label{fig:montage}
+\end{wrapfigure}
+L'idée de l'expérience est de faire tomber un cylindre de masse $m = 10.7~\mathrm{g}$, de longueur $L = 76~\mathrm{mm}$ et de diamètre $d_{cyl} = 22.4~\mathrm{mm}$ dans un tube de diamètre interne $d_{tube} = 24.2~\mathrm{mm}$ muni de 4 portes et de mesurer le temps $dt$ que met le cylindre à traverser chaque       porte. Le tube est considéré comme fermé lorsque la vanne 1 visible sur la \autoref{fig:montage} est fermée et infini lorsque la vanne 1 est ouverte car l'air poussé par le devant du cylindre circule librement et n'est pas comprimé, éliminant alors l'effet piston. On peut ajuster la pression dans le tube en ouvrant la vanne 2 qui relie le tube à la pompe à vide. Le cylindre est recouvert d'une fine couche métallique ce qui permet d'utiliser un électro-aimant pour le placer à la hauteur initiale de la chute. Une fois en place, on démarre le chronomètre et le courant arrête de circuler dans l'éléctro aimant qui retient le cylindre, le laissant alors en chute libre. Les temps $dt_i$ qui correspondent à la durée que met le cylindre à traverser la porte $i$, ainsi que les temps $\Delta t_i$ qui correspondent à la durée que met le cylindre pour aller de la porte  $i-1$ à la porte $i$, pour $i = 1, 2, 3, 4$ sont alors notés. 2 chutes libres pour chaque tube (fermé ou infini) sont effectuées pour des valeurs de pression allant de $1~\mathrm{Torr}$ à $979~\mathrm{mbar}$. Avec les données récoltées il est possible de trouver la vitesse  presque instantanée aux portes ainsi que l'accélération moyenne entre chaque porte à l'aide des relations, 
+\begin{align}
+    v_i &= \frac{L}{dt_i} \label{eq:v_inst} \\
+    a_{moy,i} &= \frac{v_i - v_{i-1}}{\Delta t_i} \label{eq:a_moy}
+\end{align}
+\cite{notice} avec $v_i$ la vitesse quasi-instantanée à la porte $i$ et $a_{moy,i}$ l'accélération moyenne entre la porte $i-1$ et la porte $i$. À noter que dans le cas où $i = 1$, $a_{moy,1}$ correspond à l'accélération moyenne du cylindre entre la hauteur initiale et la première porte. 
+
+
+\paragraph{Théorie : } Afin d'étudier l'impact des forces aérodynamiques sur le cylindre, on commence par établir l'équation du mouvement du cylindre le long de l'axe de chute. Celui n'est soumis qu'à son poids $m\boldsymbol{g}$ et au forces de frottements de l'air dans le tube $\boldsymbol{F}_r$, il vient, 
+\begin{equation}
+    ma = mg - F_r \iff F_r = m(g - a)
+    \label{eq:Newton}
+\end{equation} avec $F_r$ la force de frottement de l'air et $a$ l'accélération verticale du cylindre.
+Dans le cas d'un régime turbulent, l'air devant le cylindre va être poussé vers l'avant ce qui crée une pression plus élevée devant le cylindre que derrière et engendre une force de résistance qui caractérise l'effet piston. On considère une compression adiabatique car la compression de l'air a lieu trop rapidement pour qu'il y ait des échanges de chaleur avec le tube. En utilisant les équations du mouvement d'un fluide le long d'une ligne de courant d'un fluide on obtient alors la force de résistance totale sur l'objet. 
+\begin{equation}
+    F_f = S C_x \cdot \gamma \cdot P \cdot \frac{v^2}{2}
+    \label{eq:frottements_turbulent}
+\end{equation} \cite{notice}
+avec $S$ la section de l'objet et $C_x$ le coefficient de trainée, qui caractérise la forme aérodynamique de l'objet. $\gamma = 1.19\cdot10^{-5} \mathrm{s^2\cdot m^{-2}}$ constante thermodynamique à $20^\circ ~\mathrm{C}$. $P$ est la pression dans le tube et $v$ la vitesse de l'objet. 
+Dans le cas d'un régime laminaire, la force de frottements de l'air $F_{visq}$ est donnée par 
+\begin{equation}
+    F_{\text{vis}} = \mu \frac{\Sigma}{d} v
+    \label{eq:frottements_visqueux}
+\end{equation} \cite{notice} avec $\Sigma$ la surface de l'objet, $\mu = 1.84\cdot10^{-5}~\mathrm{Pa\cdot s}$ le coefficient de viscosité dynamique à $20^\circ ~\mathrm{C}$, $v$ la vitesse de l'objet et $d$ la distance entre l'objet et les parois du tube. 
+Afin de savoir dans quel type de régime on se trouve (turbulent ou laminaire) et donc quelle force de frottement s'applique, il est utile de considérer le nombre de Reynolds
+\begin{equation}
+    Re = \frac{\rho v D}{\mu}
+    \label{eq:Reynolds} 
+\end{equation}
+avec $\rho$ la masse volumique du fluide, $v$ sa vitesse et D la distance entre les deux parois où le fluide circule, dans notre cas il s'agit de la distance $d$ entre le cylindre et le tube.
+En effet, on admet que le régime est laminaire pour $Re < 2200$ et turbulent pour $Re>2200$. 
+% Le Re caractérise l'écoulement autour du cylindre pas devant. Utile quand on considère le vide.%
+%1. L'argument principal (Le Reynolds) :(Ce qu'on a dit tout à l'heure). La condition absolue est que l'écoulement soit laminaire, ce qui se quantifie par un nombre de Reynolds $Re < 2200$. Cela nécessite de baisser drastiquement la pression du tube pour diminuer la masse volumique du gaz.2. L'argument de la cinématique (Ton idée !) :Tu rajoutes ce paragraphe bonus :"De plus, si cette loi de frottement linéaire est valide, la résolution de l'équation du mouvement indique que la vitesse du mobile doit suivre une loi de la forme $v(t) = v_{\text{lim}} (1 - e^{-t/\tau})$. Dans nos relevés à basse pression, nous observons que la vitesse est quasi-constante d'une porte à l'autre ($v_1 \approx v_2 \approx v_3 \approx v_4$). Cela valide non seulement la présence d'un frottement fort (qui empêche l'accélération continue de type chute libre), mais prouve également que le temps de relaxation $\tau = \frac{m}{\eta}$ est très court, le régime permanent étant atteint avant les premières mesures." 
+%
+
+
+
+ 
+%
+\newpage
+\section{Résultats}
+
+L'expérience a été réalisée pour 30 valeurs de pressions, allant de 1 Torr à 979 mbar. La \autoref{fig:vitesse_pression} permet de comparer les vitesses dans le tube fini et infini
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/v_vs_p_fini.png}
+        \caption{}
+        \label{fig:v_vs_p_fini}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/v_vs_p_inf.png} 
+        \caption{}
+        \label{fig:v_vs_p_inf}
+    \end{subfigure}
+    
+    \caption{Vitesse du cylindre calculée avec l'\autoref{eq:v_inst} à chaque porte en fonction de la pression dans le tube pour le cas (a) fini et (b) infini. }
+    \label{fig:vitesse_pression}
+\end{figure}
+
+\noindent Par la suite, il est judicieux d'exprimer la force de frottement calculée avec l'\autoref{eq:Newton} en fonction de la pression. Pour ce faire, il faut remplacer les valeurs de vitesses dans l'\autoref{eq:a_moy}. Les résultats figurent sur la \autoref{fig:force_pression}
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/f_vs_p_fini.png}
+        \caption{}
+        \label{fig:f_vs_p_fini}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/f_vs_p_inf.png} 
+        \caption{}
+        \label{fig:f_vs_p_inf}
+    \end{subfigure}
+    
+    \caption{Force de frottement exercée sur le cylindre en fonction de la pression dans le tube pour le cas (a) fini et (b) infini. À noter que la force $F_{r,i}$ calculée pour la porte $i$ correspond en réalité à la force moyenne déduite de l'accélération sur l'intervalle spatial situé entre les portes $i-1$ et $i$.}
+    \label{fig:force_pression}
+\end{figure}
+
+\noindent Afin d'en savoir plus sur le comportement de la force de frottement, on fait apparaître aussi sur la \autoref{fig:force_vitesse} la force de frottement en fonction de la vitesse du cylindre. 
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/f_vs_v_fini.png}
+        \caption{}
+        \label{fig:f_vs_v_fini}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/f_vs_v_inf.png} 
+        \caption{}
+        \label{fig:f_vs_v_inf}
+    \end{subfigure}
+    
+    \caption{Force de frottement exercée sur le cylindre en fonction de sa vitesse dans le tube pour le cas (a) fini et (b) infini. Les valeurs pour une même chute sont reliés par des segments. Les incertitudes ne figurent pas par souci de lisibilité.}
+    \label{fig:force_vitesse}
+\end{figure}
+
+\noindent Le nombre de Reynolds qui permet de connaître le type d'écoulement autour du cylindre est également relevé sur la \autoref{fig:Reynolds}. 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{Comparaison_Graphe_Reynolds.png}
+    \caption{Nombre de Reynolds en fonction de la pression pour le tube fini et infini.}
+    \label{fig:Reynolds}
+\end{figure}
+
+% \begin{table}[h]
+%     \centering
+%     \begin{tabular}{|c|c|c|c|}
+%         \hline
+%         \textbf{Conditions} & \textbf{$\tau$ Tube Fini [s]} & \textbf{$\tau$ Tube Infini [s]} & \textbf{Comparaison ($t_{\text{chute}} \approx 0.5$ s)} \\
+%         \hline
+%         Haute Pression & 0.433 $\pm$ 0.008 & 0.245 $\pm$ 0.023& $\tau \ll t_{\text{chute}}$ (Vitesse limite) \\
+%         \hline
+%         Basse Pression & 0.132 $\pm$ Y.YYY & X.XXX $\pm$ Y.YYY & $\tau \gg t_{\text{chute}}$ (Accélération cste) \\
+%         \hline
+%     \end{tabular}
+%     \caption{Valeurs expérimentales du temps de relaxation $\tau$ et leurs incertitudes aux pressions extrêmes (calculées à la porte 3). Ces ordres de grandeur justifient l'utilisation de l'approximation de l'accélération constante pour le traitement des données.}
+%     \label{tab:valeurs_tau}
+% \end{table}
+
+
+% \begin{table}[h!]
+%     \centering
+%     \setlength{\tabcolsep}{8pt} % Ajustement de l'espacement entre les colonnes
+%     \renewcommand{\arraystretch}{1.5} % Ajustement de la hauteur des lignes
+%     \begin{tabular}{|l||c|c|c|c|}
+%         \cline{2-5}
+%         \multicolumn{1}{c|}{} & $E_1$ [eV] & $E_2$ [eV] & $E_3$ [eV] & $E_{moy}$ [eV] \\
+%         \hline
+%         Mercure & $5.16 \pm 0.01$ & $5.00 \pm 0.01$ & $5.40 \pm 0.01$ & $5.19 \pm 0.01$ \\
+%         \hline
+%         Néon & $16.33 \pm 0.01$ & $16.64 \pm 0.01$ & $18.52 \pm 0.01$ & - \\
+%         \hline
+%     \end{tabular}
+%     \caption{Énergies d'excitation pour le mercure et le néon, trouvés avec l'\hyperref[eq:3]{éq. 3}}
+%     \label{tab:energies}
+% \end{table}
+
+\section{Discussion}
+
+\paragraph{Vitesse de chute : }
+
+Que ce soit pour le tube fini ou infini, la vitesse de chute du cylindre, que l'on observe sur la \autoref{fig:vitesse_pression} est visiblement plus faible à haute pression qu'à basse pression. Ceci semble logique car à haute pression il y a plus de molécules d'air sur la trajectoire du cylindre qui ralentissent sa chute. En effet, sur la \autoref{fig:force_pression} on observe que la force de résistance de l'air $F_r$ est généralement plus importante pour des valeurs de pression élevée. Cependant on observe nettement sur la \autoref{fig:f_vs_p_fini} que la force de frottement de l'air varie nettement d'une porte à l'autre. Comportement que l'on observe moins sur le tube infini et qui est propre à l'effet piston.
+
+\paragraph{Force de frottements}
+Le nombre de Reynolds donne une condition pour que l'écoulement d'un fluide soit laminaire. Dans ce cas, il est possible de modéliser la force de frottement par $F_r = \mu \cdot v$. En observant la \autoref{fig:Reynolds}, on peut voir que l'ensemble des mesures remplit la condition $Re < 2200$, assurant alors un écoulement laminaire de l'air autour du cylindre. Cependant, ceci ne suffit pas à assurer la validité de l'expression $F_r = \mu \cdot v$, car il faut également s'assurer que la force de frottement visqueux due à l'écoulement laminaire est la seule source de frottement. Or, ce n'est a priori pas le cas, car à haute pression, on s'attend à observer une force de frottement due à l'effet piston dans le cas du tube fermé. Justement, en analysant la \autoref{fig:f_vs_v_fini}, on observe qu'à haute pression ($P \geq 10~\mathrm{mbar}$), la force n'a pas une relation linéaire avec la vitesse. Dans le cas du tube infini par contre, on ne s'attend pas à observer d'effet piston ; ceci est confirmé par la \autoref{fig:f_vs_v_inf}, où l'on arrive à observer une relation d'apparence linéaire entre la force et la vitesse pour chaque valeur de pression. Néanmoins, on remarque que la pente de chaque segment, et ainsi la force de frottement, augmente avec la pression de l'air. Or, dans l'expression de la force de frottement visqueux de l'\autoref{eq:frottements_visqueux}, les paramètres $\Sigma$ et $d$ sont constants et caractéristiques du cylindre, tandis que le coefficient de viscosité dynamique $\mu$ ne dépend pas de la pression. Bien que l'effet piston n'intervienne plus, le changement de pente s'explique tout de même par le fait que le cylindre, en chutant, subit une force de traînée explicitée dans l'\autoref{eq:frottements_turbulent}. Ainsi, ici aussi, ce n'est qu'à basse pression que la seule force de frottement que l'on peut considérer est celle d'un frottement visqueux de type $F_r = \mu \cdot v$.
+
+
+ \paragraph{Calcul de l'accélération : } Lors de l'expérience, par souci technique, seules les valeurs de temps $dt_i$ furent relevées. Sans les valeurs de temps $\Delta t_i$, le calcul de l'accélération est impossible. La solution a alors été de faire une moyenne arithmétique des vitesses entre deux portes, afin d'obtenir une expression pour $\Delta t_i$ :
+\begin{equation}
+    \Delta t_i = \frac{\Delta h_i }{\frac{1}{2}(v_i + v_{i-1})}
+    \label{eq:Deltat}
+\end{equation}
+avec $\Delta h_i$ la distance entre la porte $i$ et la porte $i-1$ mesurée pendant l'expérience. Pour pouvoir justifier l'utilisation de cette formule, on suppose une accélération constante entre 2 portes, or celle-ci ne l'est pas, puisque la vitesse suit une courbe exponentielle \cite{notice}. Cependant, puisque les distances $\Delta h_i $ sont faibles, les temps $\Delta t_i$ sont courts, permettant ainsi la linéarisation de la vitesse et par conséquent la considération d'une accélération constante localement.
+
+\paragraph{Application au Swissmetro : }
+Dans le cas du Swissmetro, afin de réduire au maximum la force de frottement de l'air, une solution efficace serait de baisser suffisamment la pression de l'air dans les tunnels et réduire l'espace entre le train et les parois du tunnel. Effectivement, pour des valeurs de pression de l'ordre de $P \simeq 665~ \mathrm{Pa}$ et une distance entre le train et les parois du tunnel d'environ $4~\mathrm{cm}$, l'écoulement autour du train est laminaire \cite{notice}. D'après les résultats, la baisse de pression permet de contrer l'effet piston efficacement et d'assurer un régime laminaire dans les tunnels. Faire circuler le Swissmetro dans un tube infini, soit une boucle permettrait d'éliminer l'effet piston, mais présente des problèmes techniques d'infrastructures. Modifier la géométrie du train peut aussi s'avérer pertinent, comme dans le cas des Shinkansens \cite{ref2} au Japon, afin de réduire la force de résistance de l'air et contrer l'effet piston. 
+
+%
+\section{Conclusion}
+L'expérience réalisée met clairement en évidence l'effet piston dans le cas du tube fermé. Les résultats permettent alors de tirer des conclusions favorables par rapport au projet Swissmetro en observant que la baisse de pression permet une forte réduction des forces de frottements. De plus, les différents types d'écoulement de fluides sont facilement différenciés grâce au nombre de Reynolds et permettent une description précise de la force de résistance de l'air. Le projet du Swissmetro NG est actuellement en développement \cite{ref1} et permettra peut-être un jour de connecter les centres urbains suisses de manière moderne, durable et rapide.
+%
+%			Bibliographie
+\begin{thebibliography}{99}
+\bibitem{ref1}
+Wikipedia, \textit{Swissmetro},
+\url{https://en.wikipedia.org/wiki/Swissmetro}
+\bibitem{ref2}
+Wikipedia, \textit{Effet Piston},
+\url{https://fr.wikipedia.org/wiki/Effet_piston}
+\bibitem{notice} 
+Notice de l'expérience, \textit{B5 Effet Piston}, disponible sur \url{https://www.epfl.ch/schools/sb/sph/physiquetp/tp2/tp2-exp/}.
+\bibitem{ref4} 
+Rapport de laboratoire de l'expérience 5B
+Sebastiano Moneta, Arthur Wuhrmann, 23 novembre 2022, disponible en ligne.
+\bibitem{ref5}
+Rapport de laboratoire de l'expérience 5B
+Auriane Weimar, 11 mars 2026.
+
+\end{thebibliography}
+%
+
+\section{Annexes}
+
+\subsection{Calcul des incertitudes}
+
+Le tableau \ref{tab:incertitudes_base} compile les incertitudes absolues estimées sur les mesures directes utilisées lors des calculs.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|}
+        \hline
+        \textbf{Grandeur physique} & \textbf{Incertitude estimée} \\
+        \hline
+        Pression ($P$) & $0.5~\mathrm{mbar}$ \\
+        Temps de passage capteur ($dt$) & $10^{-4}~\mathrm{s}$ \\
+        Longueur du cylindre ($L$) & $1~\mathrm{mm}$ \\
+        Distance entre les portes ($\Delta h$) & $1~\mathrm{mm}$ \\
+        Masse du cylindre ($m$) & $0.1~\mathrm{g}$ \\
+        \hline
+    \end{tabular}
+    \caption{Incertitudes absolues sur les mesures expérimentales}
+    \label{tab:incertitudes_base}
+\end{table}
+
+À partir de ces incertitudes de base, les erreurs sur les grandeurs calculées se propagent de la manière suivante :
+
+\paragraph{1. Erreurs sur les vitesses instantanées ($v_i$)}
+La vitesse est donnée par $v_i = \frac{L}{dt_i}$. L'incertitude absolue correspondante est obtenue par la somme des incertitudes relatives :
+\begin{equation}
+    \Delta v_i = v_i \left( \frac{\Delta L}{L} + \frac{\Delta dt}{dt_i} \right)
+\end{equation}
+
+\paragraph{2. Erreurs sur le temps de vol inter-portes ($\Delta t_i$)}
+Suite au problème technique mentionné dans le rapport, le temps de vol a été approximé par $\Delta t_i = \frac{2 \Delta h_i}{v_i + v_{i-1}}$. En appliquant la propagation des erreurs à ce quotient, on obtient :
+\begin{equation}
+    \Delta (\Delta t_i) = \Delta t_i \left( \frac{\Delta h}{\Delta h_i} + \frac{\Delta v_i + \Delta v_{i-1}}{v_i + v_{i-1}} \right)
+\end{equation}
+
+\paragraph{3. Erreurs sur les accélérations ($a_i$)}
+L'accélération moyenne entre deux portes est $a_i = \frac{v_i - v_{i-1}}{\Delta t_i}$. L'erreur absolue sur le numérateur est $\Delta(v_i - v_{i-1}) = \Delta v_i + \Delta v_{i-1}$. L'incertitude sur l'accélération s'écrit donc :
+\begin{equation}
+    \Delta a_i = |a_i| \left( \frac{\Delta v_i + \Delta v_{i-1}}{|v_i - v_{i-1}|} + \frac{\Delta (\Delta t_i)}{\Delta t_i} \right)
+\end{equation}
+
+\paragraph{4. Erreurs sur la force de frottement ($F_i$)}
+L'équation du mouvement donne $F_i = m(g - a_i)$. L'accélération de la pesanteur $g$ étant considérée comme une constante sans erreur ($9.81~\mathrm{m/s^2}$), l'incertitude absolue sur la force devient :
+\begin{equation}
+    \Delta F_i = \Delta m |g - a_i| + m \Delta a_i
+\end{equation}
+\end{document}
