@@ -82,7 +82,7 @@
 %On utilise la commande \sffamily pour créer des caractères sans-serif
 
 \begin{center}
-\large\textbf{\sffamily Experiment N$^\circ$G7: Effet Piston}\\%
+\large\textbf{\sffamily Experiment N$^\circ$G7: Ultrasons}\\%
 \large\sffamily Group N$^\circ$14: Paul-Émile Balducchi\\%
 Nicolas Guinaudeau \large\sffamily \today\qquad \\%
 \end{center}
@@ -95,7 +95,7 @@ L'objectif ambitieux de relier Berne à Zurich en seulement 12 minutes est celui
 \paragraph{Démarche expérimentale : } 
 \begin{wrapfigure}{r}{0.4\textwidth} % r = right, 35% de la largeur du texte
     \centering
-    \includegraphics[width=0.35\textwidth]{img/montage_exp.png}
+    %%[width=0.35\textwidth]{img/montage_exp.png}
     \caption{ Schéma de montage expérimental \cite{notice} }
     \label{fig:montage}
 \end{wrapfigure}
@@ -147,14 +147,14 @@ L'expérience a été réalisée pour 30 valeurs de pressions, allant de 1 Torr 
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{img/v_vs_p_fini.png}
+        %%[width=\textwidth]{img/v_vs_p_fini.png}
         \caption{}
         \label{fig:v_vs_p_fini}
     \end{subfigure}
     \hfill 
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{img/v_vs_p_inf.png} 
+        %%[width=\textwidth]{img/v_vs_p_inf.png} 
         \caption{}
         \label{fig:v_vs_p_inf}
     \end{subfigure}
@@ -169,14 +169,14 @@ L'expérience a été réalisée pour 30 valeurs de pressions, allant de 1 Torr 
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{img/f_vs_p_fini.png}
+        %%[width=\textwidth]{img/f_vs_p_fini.png}
         \caption{}
         \label{fig:f_vs_p_fini}
     \end{subfigure}
     \hfill 
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{img/f_vs_p_inf.png} 
+        %%[width=\textwidth]{img/f_vs_p_inf.png} 
         \caption{}
         \label{fig:f_vs_p_inf}
     \end{subfigure}
@@ -191,14 +191,14 @@ L'expérience a été réalisée pour 30 valeurs de pressions, allant de 1 Torr 
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{img/f_vs_v_fini.png}
+        %%[width=\textwidth]{img/f_vs_v_fini.png}
         \caption{}
         \label{fig:f_vs_v_fini}
     \end{subfigure}
     \hfill 
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{img/f_vs_v_inf.png} 
+        %%[width=\textwidth]{img/f_vs_v_inf.png} 
         \caption{}
         \label{fig:f_vs_v_inf}
     \end{subfigure}
@@ -210,7 +210,7 @@ L'expérience a été réalisée pour 30 valeurs de pressions, allant de 1 Torr 
 \noindent Le nombre de Reynolds qui permet de connaître le type d'écoulement autour du cylindre est également relevé sur la \autoref{fig:Reynolds}. 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\linewidth]{Comparaison_Graphe_Reynolds.png}
+    %%[width=0.5\linewidth]{Comparaison_Graphe_Reynolds.png}
     \caption{Nombre de Reynolds en fonction de la pression pour le tube fini et infini.}
     \label{fig:Reynolds}
 \end{figure}
@@ -295,8 +295,7 @@ Auriane Weimar, 11 mars 2026.
 \section{Annexes}
 
 \subsection{Calcul des incertitudes}
-
-Le tableau \ref{tab:incertitudes_base} compile les incertitudes absolues estimées sur les mesures directes utilisées lors des calculs.
+Le tableau \ref{tab:incertitudes_base} compile les incertitudes absolues estimées sur les mesures directes utilisées lors des différentes manipulations.
 
 \begin{table}[h]
     \centering
@@ -304,40 +303,24 @@ Le tableau \ref{tab:incertitudes_base} compile les incertitudes absolues estimé
         \hline
         \textbf{Grandeur physique} & \textbf{Incertitude estimée} \\
         \hline
-        Pression ($P$) & $0.5~\mathrm{mbar}$ \\
-        Temps de passage capteur ($dt$) & $10^{-4}~\mathrm{s}$ \\
-        Longueur du cylindre ($L$) & $1~\mathrm{mm}$ \\
-        Distance entre les portes ($\Delta h$) & $1~\mathrm{mm}$ \\
-        Masse du cylindre ($m$) & $0.1~\mathrm{g}$ \\
+        Distance à la règle ($\Delta d$) & $0.05~\mathrm{cm}$ \\
+        Temps à l'oscilloscope (Ondes continues) & $1~\mu\mathrm{s}$ \\
+        Temps à l'oscilloscope (Ondes pulsées) & $0.2~\mathrm{ms}$ \\
+        Fréquence du générateur ($\Delta f$) & $0.1~\mathrm{kHz}$ \\
         \hline
     \end{tabular}
-    \caption{Incertitudes absolues sur les mesures expérimentales}
+    \caption{Incertitudes absolues (instrumentales) sur les mesures expérimentales.}
     \label{tab:incertitudes_base}
 \end{table}
 
-À partir de ces incertitudes de base, les erreurs sur les grandeurs calculées se propagent de la manière suivante :
+\paragraph{Incertitudes sur la vitesse du son (Régressions linéaires) : }
+Au lieu de propager les erreurs instrumentales point par point, les vitesses du son ont été déterminées via la pente des régressions linéaires. L'incertitude sur la longueur d'onde $\Delta \lambda$ (Manip 2) et l'incertitude sur la vitesse $c$ (Manip 3) sont directement données par l'erreur standard de la régression linéaire (obtenue par la méthode des moindres carrés).
 
-\paragraph{1. Erreurs sur les vitesses instantanées ($v_i$)}
-La vitesse est donnée par $v_i = \frac{L}{dt_i}$. L'incertitude absolue correspondante est obtenue par la somme des incertitudes relatives :
+Pour la manipulation 2 (Ondes continues), la vitesse du son est calculée par $c = \lambda f$. L'incertitude absolue se propage alors selon la somme des incertitudes relatives :
 \begin{equation}
-    \Delta v_i = v_i \left( \frac{\Delta L}{L} + \frac{\Delta dt}{dt_i} \right)
+    \Delta c = c \left( \frac{\Delta \lambda}{\lambda} + \frac{\Delta f}{f} \right)
 \end{equation}
 
-\paragraph{2. Erreurs sur le temps de vol inter-portes ($\Delta t_i$)}
-Suite au problème technique mentionné dans le rapport, le temps de vol a été approximé par $\Delta t_i = \frac{2 \Delta h_i}{v_i + v_{i-1}}$. En appliquant la propagation des erreurs à ce quotient, on obtient :
-\begin{equation}
-    \Delta (\Delta t_i) = \Delta t_i \left( \frac{\Delta h}{\Delta h_i} + \frac{\Delta v_i + \Delta v_{i-1}}{v_i + v_{i-1}} \right)
-\end{equation}
+Pour la manipulation 3 (Ondes pulsées), la pente du graphique représente directement la vitesse du son $c = \frac{2d}{t}$. L'incertitude $\Delta c$ correspond donc directement à l'erreur standard sur la pente de la droite de régression.
 
-\paragraph{3. Erreurs sur les accélérations ($a_i$)}
-L'accélération moyenne entre deux portes est $a_i = \frac{v_i - v_{i-1}}{\Delta t_i}$. L'erreur absolue sur le numérateur est $\Delta(v_i - v_{i-1}) = \Delta v_i + \Delta v_{i-1}$. L'incertitude sur l'accélération s'écrit donc :
-\begin{equation}
-    \Delta a_i = |a_i| \left( \frac{\Delta v_i + \Delta v_{i-1}}{|v_i - v_{i-1}|} + \frac{\Delta (\Delta t_i)}{\Delta t_i} \right)
-\end{equation}
-
-\paragraph{4. Erreurs sur la force de frottement ($F_i$)}
-L'équation du mouvement donne $F_i = m(g - a_i)$. L'accélération de la pesanteur $g$ étant considérée comme une constante sans erreur ($9.81~\mathrm{m/s^2}$), l'incertitude absolue sur la force devient :
-\begin{equation}
-    \Delta F_i = \Delta m |g - a_i| + m \Delta a_i
-\end{equation}
 \end{document}
